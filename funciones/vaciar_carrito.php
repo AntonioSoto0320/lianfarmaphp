@@ -8,11 +8,11 @@ if(isset($_SESSION['username'])){
 }
 
 
-if (!isset($_GET["id_producto_eliminar"])) {
+if (!isset($_GET["id_producto_vaciar"])) {
     exit("No hay id_producto");
 }
 //agregarProductoAlCarrito($_POST["id_producto"]);
-quitarProductoDelCarrito($_GET["id_producto_eliminar"],$usuarios);
+vaciarProductoDelCarrito($usuarios);
 
 
 

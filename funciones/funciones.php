@@ -29,13 +29,13 @@ function obtenerConexion()
 
 //este esta modificado
 
-function agregarProductoAlCarrito($idProducto)
+function agregarProductoAlCarrito($idProducto,$usuarios)
 {
 
    
    $bd = obtenerConexion();
     $idSesion = session_id();
-    $sql = "INSERT INTO carrito_usuarios(id_sesion, id_producto) VALUES ('$idSesion','$idProducto')";
+    $sql = "INSERT INTO carrito_usuarios(usuario, id_producto) VALUES ('$usuarios','$idProducto')";
     $query = mysqli_query($bd, $sql);
     return $query;
 }
@@ -67,21 +67,23 @@ function obtenerProductosEnCarrito()
 }
 
 
-function quitarProductoDelCarrito($idProducto)
+function quitarProductoDelCarrito($idProducto,$usuarios)
 {
     $bd = obtenerConexion();
-    //iniciarSesionSiNoEstaIniciada();
-   // $idSesion = session_id();
-    //$sentencia = $bd->prepare("DELETE FROM carrito_usuarios WHERE id_sesion = ? AND id_producto = ?");
-    
-    $sql = "DELETE FROM carrito_usuarios WHERE id_producto = $idProducto LIMIT 1";
+    $sql = "DELETE FROM carrito_usuarios WHERE usuario= '$usuarios' && id_producto=$idProducto LIMIT 1";
     $query = mysqli_query($bd, $sql);
     return $query;
-    //$sentencia = $bd->prepare("DELETE FROM carrito_usuarios WHERE id_producto = ?");
-    //return $sentencia->execute([$idSesion, $idProducto]);
-    //$sentencia->execute([$idProducto]);
-    //return $sentencia->fetch();
-   // return $sentencia->execute($idProducto);
+    
+
+}
+
+function vaciarProductoDelCarrito($usuarios)
+{
+    $bd = obtenerConexion();
+    $sql = "DELETE FROM carrito_usuarios WHERE usuario= '$usuarios' ";
+    $query = mysqli_query($bd, $sql);
+    return $query;
+    
 
 }
 

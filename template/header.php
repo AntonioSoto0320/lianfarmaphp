@@ -1,8 +1,9 @@
 <?php 
 session_start();
 if(isset($_SESSION['username'])){
-    $usuarios = $_SESSION['username'];
-}
+    $usuarios = $_SESSION['username'];}
+
+
 
 ?>
 
@@ -87,13 +88,18 @@ if(isset($_SESSION['username'])){
                                                     <tbody>
 
                                                         <?php
+                                                        if(isset($_SESSION['username'])){
+                                                            $usuarios = $_SESSION['username'];
                                                         $conexion = new mysqli("localhost", "root", "", "lianfarmaphp") or die("no se conecto a la base de datos" . mysqli_connect_error());
+                                                        
 
-
-
-                                                        $sql = "SELECT p.imagen, p.nombre_producto, p.precio,p.tipo_imagen,c.id_producto, COUNT(*) cantidad FROM productos p INNER JOIN carrito_usuarios  c ON c.id_producto = p.id_producto GROUP BY c.id_producto ORDER BY cantidad DESC";
+                                                        $sql = "SELECT p.imagen, p.nombre_producto, p.precio,p.tipo_imagen,c.id_producto, COUNT(*) cantidad FROM productos p INNER JOIN carrito_usuarios c ON c.id_producto = p.id_producto WHERE usuario='$usuarios' GROUP BY c.id_producto ORDER BY cantidad DESC";
+                                                       
+                                                        
                                                         $query = mysqli_query($conexion, $sql);
                                                            
+                                                        
+                                                       
 
                                                         while ($mostrar = mysqli_fetch_array($query)) {
 
@@ -105,19 +111,20 @@ if(isset($_SESSION['username'])){
                                                                 <td><?php echo $mostrar['nombre_producto']; ?></td>
                                                                 <td><?php echo $mostrar['precio']; ?></td>
                                                                 <td><?php echo $mostrar['cantidad']; ?></td>
-                                                                <!-- <td><?php// echo $mostrar['id_producto']; ?></td> -->
                                                                 <td><a href="http://localhost:80/lianfarma/funciones/carrito_eliminar.php?id_producto_eliminar=<?php echo $mostrar['id_producto']; ?>">eliminar</a></td>
 
 
-                                                                <!--SELECT imagen,nombre_producto,precio FROM productos WHERE id_producto='1' -->
+                                                                
 
                                                             </tr>
                                                         <?php }
+                                                         }
                                                         ?>
                                                     </tbody>
                                                 </table>
 
-                                                <a href="#" id="vaciar-carrito" class="button u-full-width">Vaciar Carrito</a>
+                                                <a href="<?php if(isset($_SESSION['username'])){ ?>http://localhost:80/lianfarma/funciones/vaciar_carrito.php?id_producto_vaciar=<?php echo $usuarios ?><?php } ?>" id="vaciar-carrito" class="button u-full-width">Vaciar Carrito</a> |
+                                                    <a href="<?php if(isset($_SESSION['username'])){ ?>http://localhost:80/lianfarma/funciones/vaciar_carrito.php?id_producto_vaciar=<?php echo $usuarios ?><?php } ?>" id="vaciar-carrito" class="button u-full-width">Comprar</a>
                                             </div>
                                         </li>
                                     </ul>
