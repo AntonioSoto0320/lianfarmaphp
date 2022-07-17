@@ -27,6 +27,8 @@ function data(){
             location.href='http://localhost:80/lianfarma/administrador/inicio.php';
         }else if(respuestaLoginAdmin===0){
             alerta();
+        }else if(respuestaLoginAdmin===2){
+            location.href='http://localhost:80/lianfarma/';
         }
         
     });  

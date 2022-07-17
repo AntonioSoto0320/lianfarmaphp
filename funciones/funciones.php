@@ -20,15 +20,7 @@ function obtenerVariableDelEntorno($key)
 function obtenerConexion()
 {
     
-    /*$password = obtenerVariableDelEntorno("MYSQL_PASSWORD");
-    $user = obtenerVariableDelEntorno("MYSQL_USER");
-    $dbName = obtenerVariableDelEntorno("MYSQL_DATABASE_NAME");
-    $database = new PDO('mysql:host=localhost;dbname=' . $dbName, $user, $password);
-    //$conexion = new mysqli("localhost", "root", "", "lianfarmaphp");
-    $database->query("set names utf8;");
-    $database->setAttribute(PDO::ATTR_EMULATE_PREPARES, FALSE);
-    $database->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    $database->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_OBJ);*/
+    
 
     $conexion = new mysqli("localhost", "root", "", "lianfarmaphp") or die("no se conecto a la base de datos" . mysqli_connect_error());
 
@@ -39,15 +31,7 @@ function obtenerConexion()
 
 function agregarProductoAlCarrito($idProducto)
 {
-   /* // Ligar el id del producto con el usuario a través de la sesión
-    $bd = obtenerConexion();
-    //iniciarSesionSiNoEstaIniciada();
-    $idSesion = session_id();
-    $sentencia = $bd->prepare("INSERT INTO carrito_usuarios(id_sesion, id_producto) VALUES (?, ?)");
-   // $sql ="SELECT p.imagen, p.nombre_producto, p.precio FROM productos p, carrito_usuarios c WHERE p.id_producto = ".$idProducto;
-   
-   // return $query = mysqli_query($bd, $sql);
-   return $sentencia->execute([$idSesion, $idProducto]);*/
+
    
    $bd = obtenerConexion();
     $idSesion = session_id();
@@ -64,7 +48,7 @@ function obtenerIdsDeProductosEnCarrito()
     $sentencia = $bd->prepare("SELECT id_producto FROM carrito_usuarios WHERE id_sesion = ?");
     $idSesion = session_id();
     $sentencia->execute([$idSesion]);
-    return $sentencia->fetchAll(PDO::FETCH_COLUMN);
+    return $sentencia-> fetch(PDO::FETCH_COLUMN);
 }
 
 
@@ -79,7 +63,7 @@ function obtenerProductosEnCarrito()
      WHERE carrito_usuarios.id_sesion = ?");
     $idSesion = session_id();
     $sentencia->execute([$idSesion]);
-    return $sentencia->fetchAll();
+    return $sentencia->fetch();
 }
 
 
@@ -87,9 +71,18 @@ function quitarProductoDelCarrito($idProducto)
 {
     $bd = obtenerConexion();
     //iniciarSesionSiNoEstaIniciada();
-    $idSesion = session_id();
-    $sentencia = $bd->prepare("DELETE FROM carrito_usuarios WHERE id_sesion = ? AND id_producto = ?");
-    return $sentencia->execute([$idSesion, $idProducto]);
+   // $idSesion = session_id();
+    //$sentencia = $bd->prepare("DELETE FROM carrito_usuarios WHERE id_sesion = ? AND id_producto = ?");
+    
+    $sql = "DELETE FROM carrito_usuarios WHERE id_producto = $idProducto LIMIT 1";
+    $query = mysqli_query($bd, $sql);
+    return $query;
+    //$sentencia = $bd->prepare("DELETE FROM carrito_usuarios WHERE id_producto = ?");
+    //return $sentencia->execute([$idSesion, $idProducto]);
+    //$sentencia->execute([$idProducto]);
+    //return $sentencia->fetch();
+   // return $sentencia->execute($idProducto);
+
 }
 
 ?>

@@ -38,7 +38,7 @@
                         <i class="fa fa-cart-plus"></i>&nbsp;Agregar al carrito
                     </button>
                 </form>
-                <!--<button id="<?php// echo $mostrar['id_producto']; ?>">Agregar al carrito</button>-->
+                
             </div>
         </div>
     <?php

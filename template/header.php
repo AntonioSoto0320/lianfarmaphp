@@ -1,4 +1,9 @@
-<?php // require_once ""  
+<?php 
+session_start();
+if(isset($_SESSION['username'])){
+    $usuarios = $_SESSION['username'];
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -24,9 +29,18 @@
             </div>
             <div class="Buscador"><input type="search" placeholder="Busca tu Archivo" id="Buscador" /></div>
 
-            <div class="Usuario">
-                <a>Bienvenido: Eddy Olivo</a>
-            </div>
+            <?php 
+            if(isset($_SESSION['username'])){ ?>
+                <div class="username">
+                <a>Bienvenido: <?php echo $usuarios; ?></a>
+
+               
+                </div>
+
+                <a href="http://localhost:80/lianfarma/funciones/cerrar_sesion.php">Cerrar Sesion</a>
+            <?php
+            }
+            ?> 
             <div>
                 <img src="" alt="">
             </div>
@@ -67,7 +81,7 @@
                                                             <th>Nombre</th>
                                                             <th>Precio</th>
                                                             <th>Cantidad</th>
-                                                            <th></th>
+                                                            <th>Eliminar</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
@@ -77,9 +91,9 @@
 
 
 
-                                                        $sql = "SELECT p.imagen, p.nombre_producto, p.precio,p.tipo_imagen, COUNT(*) cantidad FROM productos p INNER JOIN carrito_usuarios c ON c.id_producto = p.id_producto GROUP BY c.id_producto ORDER BY cantidad DESC";
+                                                        $sql = "SELECT p.imagen, p.nombre_producto, p.precio,p.tipo_imagen,c.id_producto, COUNT(*) cantidad FROM productos p INNER JOIN carrito_usuarios  c ON c.id_producto = p.id_producto GROUP BY c.id_producto ORDER BY cantidad DESC";
                                                         $query = mysqli_query($conexion, $sql);
-
+                                                           
 
                                                         while ($mostrar = mysqli_fetch_array($query)) {
 
@@ -91,6 +105,8 @@
                                                                 <td><?php echo $mostrar['nombre_producto']; ?></td>
                                                                 <td><?php echo $mostrar['precio']; ?></td>
                                                                 <td><?php echo $mostrar['cantidad']; ?></td>
+                                                                <!-- <td><?php// echo $mostrar['id_producto']; ?></td> -->
+                                                                <td><a href="http://localhost:80/lianfarma/funciones/carrito_eliminar.php?id_producto_eliminar=<?php echo $mostrar['id_producto']; ?>">eliminar</a></td>
 
 
                                                                 <!--SELECT imagen,nombre_producto,precio FROM productos WHERE id_producto='1' -->
