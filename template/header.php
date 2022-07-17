@@ -1,0 +1,116 @@
+<?php // require_once ""  
+?>
+
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <title>Inicio</title>
+    <link rel="stylesheet" href="http://localhost:80/lianfarma/css/style.css">
+    <link rel="stylesheet" href="http://localhost:80/lianfarma/css/bootstrap.min.css">
+    <link rel="stylesheet" href="http://localhost:80/lianfarma/css/custom.css">
+    <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
+</head>
+
+<body>
+    <header>
+        <div class="header_superior">
+            <div class="logo">
+
+                <a href="http://localhost:80/lianfarma/"><img src="http://localhost:80/lianfarma/img/logo.jpg" alt=""></a>
+
+            </div>
+            <div class="Buscador"><input type="search" placeholder="Busca tu Archivo" id="Buscador" /></div>
+
+            <div class="Usuario">
+                <a>Bienvenido: Eddy Olivo</a>
+            </div>
+            <div>
+                <img src="" alt="">
+            </div>
+
+
+
+        </div>
+        <div class="container_menu">
+            <div class="menu">
+                <nav class="underline">
+                    <ul>
+                        <li><a href="#">Categorias</a>
+                            <ul>
+                                <li><a href="http://localhost:80/lianfarma/categoria/cuidadopersonal/">Cuidado personal </a></li>
+                                <li><a href="http://localhost:80/lianfarma/categoria/nutricion/">Nutrición</a></li>
+                                <li><a href="http://localhost:80/lianfarma/categoria/farmacia/">Farmacia</a></li>
+                                <li><a href="http://localhost:80/lianfarma/categoria/bebes/">Bebés</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="#">Noticias</a></li>
+                        <li><a href="http://localhost:80/lianfarma/categoria/ubicanos">Ubicanos</a></li>
+                        <li><a href="">Sigue tu pedido</a></li>
+
+                        <li><a href="http://localhost:80/lianfarma/categoria/iniciarsesion">Iniciar sesión</a></li>
+
+                        <div class="container">
+                            <div class="row">
+                                <div class="two columns u-pull-right">
+                                    <ul>
+                                        <li class="submenu">
+                                            <img src="http://localhost:80/lianfarma/img/carrito.png" id="img-carrito">
+                                            <div id="carrito">
+
+                                                <table id="lista-carrito" class="u-full-width">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Imagen</th>
+                                                            <th>Nombre</th>
+                                                            <th>Precio</th>
+                                                            <th>Cantidad</th>
+                                                            <th></th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+
+                                                        <?php
+                                                        $conexion = new mysqli("localhost", "root", "", "lianfarmaphp") or die("no se conecto a la base de datos" . mysqli_connect_error());
+
+
+
+                                                        $sql = "SELECT p.imagen, p.nombre_producto, p.precio,p.tipo_imagen, COUNT(*) cantidad FROM productos p INNER JOIN carrito_usuarios c ON c.id_producto = p.id_producto GROUP BY c.id_producto ORDER BY cantidad DESC";
+                                                        $query = mysqli_query($conexion, $sql);
+
+
+                                                        while ($mostrar = mysqli_fetch_array($query)) {
+
+                                                        ?>
+                                                            <tr>
+
+
+                                                                <td><img src="data:<?php echo  $mostrar['tipo_imagen']; ?>;base64,<?php echo base64_encode($mostrar['imagen']); ?>" height="100px" width="100px" /></td>
+                                                                <td><?php echo $mostrar['nombre_producto']; ?></td>
+                                                                <td><?php echo $mostrar['precio']; ?></td>
+                                                                <td><?php echo $mostrar['cantidad']; ?></td>
+
+
+                                                                <!--SELECT imagen,nombre_producto,precio FROM productos WHERE id_producto='1' -->
+
+                                                            </tr>
+                                                        <?php }
+                                                        ?>
+                                                    </tbody>
+                                                </table>
+
+                                                <a href="#" id="vaciar-carrito" class="button u-full-width">Vaciar Carrito</a>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
