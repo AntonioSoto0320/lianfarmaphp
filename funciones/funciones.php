@@ -77,6 +77,16 @@ function quitarProductoDelCarrito($idProducto,$usuarios)
 
 }
 
+function quitarTodosProductoDelCarrito($idProducto,$usuarios)
+{
+    $bd = obtenerConexion();
+    $sql = "DELETE FROM carrito_usuarios WHERE usuario= '$usuarios' && id_producto=$idProducto";
+    $query = mysqli_query($bd, $sql);
+    return $query;
+    
+
+}
+
 function vaciarProductoDelCarrito($usuarios)
 {
     $bd = obtenerConexion();

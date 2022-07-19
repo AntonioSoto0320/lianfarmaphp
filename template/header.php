@@ -1,9 +1,11 @@
 <?php 
 session_start();
 if(isset($_SESSION['username'])){
-    $usuarios = $_SESSION['username'];}
+    $usuarios = $_SESSION['username'];
+    
+}
 
-
+   
 
 ?>
 
@@ -18,6 +20,8 @@ if(isset($_SESSION['username'])){
     <link rel="stylesheet" href="http://localhost:80/lianfarma/css/bootstrap.min.css">
     <link rel="stylesheet" href="http://localhost:80/lianfarma/css/custom.css">
     <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
 </head>
 
 <body>
@@ -72,7 +76,8 @@ if(isset($_SESSION['username'])){
                                 <div class="two columns u-pull-right">
                                     <ul>
                                         <li class="submenu">
-                                            <img src="http://localhost:80/lianfarma/img/carrito.png" id="img-carrito">
+                                        <a href="http://localhost:80/lianfarma/categoria/carrito"><img src="http://localhost:80/lianfarma/img/carrito.png" id="img-carrito"></a>
+                                        
                                             <div id="carrito">
 
                                                 <table id="lista-carrito" class="u-full-width">
@@ -124,7 +129,7 @@ if(isset($_SESSION['username'])){
                                                 </table>
 
                                                 <a href="<?php if(isset($_SESSION['username'])){ ?>http://localhost:80/lianfarma/funciones/vaciar_carrito.php?id_producto_vaciar=<?php echo $usuarios ?><?php } ?>" id="vaciar-carrito" class="button u-full-width">Vaciar Carrito</a> |
-                                                    <a href="<?php if(isset($_SESSION['username'])){ ?>http://localhost:80/lianfarma/funciones/vaciar_carrito.php?id_producto_vaciar=<?php echo $usuarios ?><?php } ?>" id="vaciar-carrito" class="button u-full-width">Comprar</a>
+                                                <a href="http://localhost:80/lianfarma/categoria/carrito">Compar</a> 
                                             </div>
                                         </li>
                                     </ul>
