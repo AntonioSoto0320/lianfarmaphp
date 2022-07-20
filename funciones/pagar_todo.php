@@ -40,8 +40,22 @@ if(isset($_POST['pago'])){
 
 
 detalleCompra($usuarios, $nombres_apellidos, $direccion,$correo,$telefono,$tarjeta);
+infoCompra($usuarios);
+actualizarStock();
 
-header("Location: http://localhost:80/lianfarma/categoria/carrito/");
+
+
+
+
+
+
+
+
+
+
+
+
+header("Location: http://localhost:80/lianfarma/funciones/enviar_mail.php");
 
 
 

@@ -60,6 +60,28 @@ function obtenerIdsDeProductosEnCarrito()
     return $sentencia-> fetch(PDO::FETCH_COLUMN);
 }
 
+function infoCompra($usuarios)
+{
+    $bd = obtenerConexion();
+    $sql = "INSERT INTO `informacion_compra_producto`(`orden_compra`, `id_producto`, `usuario`, `nombre_producto`, `precio`, `cantidad`) SELECT dc.orden_compra,c.id_producto,c.usuario,p.nombre_producto,p.precio,COUNT(*) cantidad FROM productos p INNER JOIN carrito_usuarios c ON c.id_producto = p.id_producto INNER JOIN detalle_compra dc ON c.usuario = dc.usuario WHERE dc.usuario ='antonio45' GROUP BY c.id_producto ORDER BY cantidad DESC";
+    $query = mysqli_query($bd, $sql);
+    return $query;
+   
+}
+
+function actualizarStock()
+{
+    $bd = obtenerConexion();
+    $sql = "UPDATE productos INNER JOIN informacion_compra_producto ON productos.id_producto = informacion_compra_producto.id_producto SET productos.stock = productos.stock - informacion_compra_producto.cantidad";
+    $query = mysqli_query($bd, $sql);
+    return $query;
+   
+}
+
+
+
+
+
 
 function obtenerProductosEnCarrito()
 {
