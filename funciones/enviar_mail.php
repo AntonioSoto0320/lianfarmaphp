@@ -1,5 +1,14 @@
 <?php
 
+include_once "funciones.php"; 
+
+session_start();
+
+if(isset($_SESSION['username'])){
+    $usuarios = $_SESSION['username'];
+    //echo $usuarios;
+
+}
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
@@ -31,8 +40,9 @@ try {
     //Content
     $mail->isHTML(true);                                  //Set email format to HTML
     $mail->Subject = 'Compra Online';
-    $mail->Body    = 'esto es una prueba';
+    $mail->Body    = 'prueba';
     $mail->AltBody = 'Tus Compras de LianFarma';
+    $mail->addAttachment('attachments/boletas/boleta.pdf');
 
     $mail->send();
     echo 'Message has been sent';
@@ -40,6 +50,6 @@ try {
     echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
 }
 
-
+elimarCarritoVendido($usuarios);
 
 ?>

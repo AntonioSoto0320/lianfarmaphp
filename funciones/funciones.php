@@ -69,6 +69,18 @@ function infoCompra($usuarios)
    
 }
 
+
+function elimarCarritoVendido($usuarios)
+{
+    $bd = obtenerConexion();
+    $sql = "DELETE FROM carrito_usuarios  WHERE usuario = '$usuarios';";
+    $query = mysqli_query($bd, $sql);
+    return $query;
+   
+}
+
+
+
 function actualizarStock()
 {
     $bd = obtenerConexion();

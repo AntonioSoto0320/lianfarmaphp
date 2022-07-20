@@ -1,6 +1,4 @@
 <?php  
-
-
 include_once "funciones.php"; 
 
 session_start();
@@ -42,6 +40,8 @@ if(isset($_POST['pago'])){
 detalleCompra($usuarios, $nombres_apellidos, $direccion,$correo,$telefono,$tarjeta);
 infoCompra($usuarios);
 actualizarStock();
+
+
 
 
 
