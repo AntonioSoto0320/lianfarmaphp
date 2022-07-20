@@ -32,7 +32,7 @@ if(isset($_SESSION['username'])){
                 <a href="http://localhost:80/lianfarma/"><img src="http://localhost:80/lianfarma/img/logo.jpg" alt=""></a>
 
             </div>
-            <div class="Buscador"><input type="search" placeholder="Busca tu Archivo" id="Buscador" /></div>
+            <div class="Buscador"></div><div class="Buscador"></div><div class="Buscador"></div><div class="Buscador"></div><div class="Buscador"></div><div class="Buscador"></div><div class="Buscador"></div><div class="Buscador"></div><div class="Buscador"></div><div class="Buscador"></div><div class="Buscador"></div><div class="Buscador"></div><div class="Buscador"></div><div class="Buscador"></div><div class="Buscador"></div><div class="Buscador"></div><div class="Buscador"></div><div class="Buscador"></div><div class="Buscador"></div><div class="Buscador"></div><div class="Buscador"></div><div class="Buscador"></div><div class="Buscador"></div><div class="Buscador"></div><div class="Buscador"></div>
 
             <?php 
             if(isset($_SESSION['username'])){ ?>
@@ -65,12 +65,16 @@ if(isset($_SESSION['username'])){
                                 <li><a href="http://localhost:80/lianfarma/categoria/bebes/">Bebés</a></li>
                             </ul>
                         </li>
-                        <li><a href="#">Noticias</a></li>
+                        <li><a href="#">               </a></li>
+                        
+                        
                         <li><a href="http://localhost:80/lianfarma/categoria/ubicanos">Ubicanos</a></li>
-                        <li><a href="">Sigue tu pedido</a></li>
+                        <li><a href="#">               </a></li>
+                        
 
                         <li><a href="http://localhost:80/lianfarma/categoria/iniciarsesion">Iniciar sesión</a></li>
-
+                        <li><a href="#">               </a></li>
+                        
                         <div class="container">
                             <div class="row">
                                 <div class="two columns u-pull-right">
@@ -116,7 +120,7 @@ if(isset($_SESSION['username'])){
                                                                 <td><?php echo $mostrar['nombre_producto']; ?></td>
                                                                 <td><?php echo $mostrar['precio']; ?></td>
                                                                 <td><?php echo $mostrar['cantidad']; ?></td>
-                                                                <td><a href="http://localhost:80/lianfarma/funciones/carrito_eliminar.php?id_producto_eliminar=<?php echo $mostrar['id_producto']; ?>">eliminar</a></td>
+                                                                <td><a href="   ">eliminar</a></td>
 
 
                                                                 
