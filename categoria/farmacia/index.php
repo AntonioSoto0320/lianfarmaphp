@@ -37,7 +37,7 @@
                 <form action="../../funciones/agregar_carrito.php" method="post">
                     <input type="hidden" name="id_producto" value="<?php echo $mostrar['id_producto']; ?>">
                     <input type="hidden" name="id_categoria" value="http://localhost:80/lianfarma/categoria/farmacia/">
-                    <button class="button is-primary">
+                    <button class="button is-primary" style="border-radius: 10px;">
                         <i class="fa fa-cart-plus"></i>&nbsp;Agregar al carrito
                     </button>
                 </form>

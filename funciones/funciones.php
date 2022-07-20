@@ -40,6 +40,15 @@ function agregarProductoAlCarrito($idProducto,$usuarios)
     return $query;
 }
 
+function detalleCompra($usuarios, $nombres_apellidos, $direccion,$correo,$telefono,$tarjeta)
+{
+
+   $bd = obtenerConexion();
+    $sql = "INSERT INTO `detalle_compra` (`usuario`, `nombre_apellido`, `direccion_envio`, `correo`, `telefono`,`tarjeta`) VALUES ('$usuarios', '$nombres_apellidos', '$direccion', '$correo', '$telefono', '$tarjeta')";
+    $query = mysqli_query($bd, $sql);
+    return $query;
+}
+
 
 function obtenerIdsDeProductosEnCarrito()
 {

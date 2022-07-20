@@ -65,15 +65,16 @@ if(isset($_SESSION['username'])){
                                 <li><a href="http://localhost:80/lianfarma/categoria/bebes/">Bebés</a></li>
                             </ul>
                         </li>
-                        <li><a href="#">               </a></li>
+                        
                         
                         
                         <li><a href="http://localhost:80/lianfarma/categoria/ubicanos">Ubicanos</a></li>
-                        <li><a href="#">               </a></li>
+                        
                         
 
                         <li><a href="http://localhost:80/lianfarma/categoria/iniciarsesion">Iniciar sesión</a></li>
-                        <li><a href="#">               </a></li>
+                        <li></li>
+                        <li></li>
                         
                         <div class="container">
                             <div class="row">
